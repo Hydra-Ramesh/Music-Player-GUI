@@ -27,12 +27,17 @@ void GUI::AddFileToPlaylist(const std::string &filepath) {
       filepath.substr(filepath.find_last_of(".") + 1) == "MP3" ||
       filepath.substr(filepath.find_last_of(".") + 1) == "WAV") {
 
-    // Check for duplicates
-    for (const auto &track : playlist) {
-      if (track == filepath)
+    // Check for duplicates (O(N) - could be O(1) with a HashSet, but DLL is
+    // O(N))
+    Node *temp = playlist.GetHead();
+    while (temp) {
+      if (temp->filepath == filepath)
         return;
+      temp = temp->next;
     }
-    playlist.push_back(filepath);
+
+    playlist.Add(filepath);
+    searchTrie.Insert(GetFileName(filepath), filepath);
   }
 }
 
@@ -44,7 +49,7 @@ void GUI::Render() {
   // Main Window
   ImGui::SetNextWindowPos(ImVec2(0, 0));
   ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
-  ImGui::Begin("Music Player", nullptr,
+  ImGui::Begin("Music Player by @Code&Cofee", nullptr,
                ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize |
                    ImGuiWindowFlags_NoMove);
 
@@ -64,18 +69,17 @@ void GUI::RenderPlayerControls() {
   float progress = (total > 0.0f) ? (current / total) : 0.0f;
 
   char overlay[32];
-  sprintf(overlay, "%.0f:%.0f / %.0f:%.0f", current / 60, fmod(current, 60),
-          total / 60, fmod(total, 60));
+  snprintf(overlay, sizeof(overlay), "%.0f:%.0f / %.0f:%.0f", current / 60,
+           fmod(current, 60), total / 60, fmod(total, 60));
 
   ImGui::ProgressBar(progress, ImVec2(-1.0f, 0.0f), overlay);
 
   // Controls
   if (ImGui::Button("<<")) {
-    // Previous track logic
-    if (currentTrackIndex > 0) {
-      currentTrackIndex--;
-      currentTrackName = GetFileName(playlist[currentTrackIndex]);
-      audioEngine->PlayFile(playlist[currentTrackIndex]);
+    Node *prev = playlist.Prev();
+    if (prev) {
+      currentTrackName = prev->filename;
+      audioEngine->PlayFile(prev->filepath);
     }
   }
   ImGui::SameLine();
@@ -86,12 +90,12 @@ void GUI::RenderPlayerControls() {
     }
   } else {
     if (ImGui::Button("Play")) {
-      if (currentTrackIndex >= 0) {
+      if (playlist.GetCurrent()) {
         audioEngine->Play();
-      } else if (!playlist.empty()) {
-        currentTrackIndex = 0;
-        currentTrackName = GetFileName(playlist[currentTrackIndex]);
-        audioEngine->PlayFile(playlist[currentTrackIndex]);
+      } else if (!playlist.IsEmpty()) {
+        playlist.SetCurrent(playlist.GetHead());
+        currentTrackName = playlist.GetHead()->filename;
+        audioEngine->PlayFile(playlist.GetHead()->filepath);
       }
     }
   }
@@ -103,11 +107,10 @@ void GUI::RenderPlayerControls() {
 
   ImGui::SameLine();
   if (ImGui::Button(">>")) {
-    // Next track logic
-    if (currentTrackIndex < (int)playlist.size() - 1) {
-      currentTrackIndex++;
-      currentTrackName = GetFileName(playlist[currentTrackIndex]);
-      audioEngine->PlayFile(playlist[currentTrackIndex]);
+    Node *next = playlist.Next();
+    if (next) {
+      currentTrackName = next->filename;
+      audioEngine->PlayFile(next->filepath);
     }
   }
 
@@ -119,21 +122,52 @@ void GUI::RenderPlayerControls() {
 }
 
 void GUI::RenderPlaylist() {
-  ImGui::Text("Playlist");
+  ImGui::Text("Playlist (DSA Optimized)");
+
+  // Search Bar
+  if (ImGui::InputText("Search", searchBuffer, sizeof(searchBuffer))) {
+    std::string query = searchBuffer;
+    if (query.empty()) {
+      isSearching = false;
+    } else {
+      isSearching = true;
+      searchResults = searchTrie.Search(query);
+    }
+  }
+
   ImGui::BeginChild("PlaylistRegion", ImVec2(0, -1.0f), true);
 
-  for (int i = 0; i < playlist.size(); i++) {
-    std::string name = GetFileName(playlist[i]);
-    bool isSelected = (currentTrackIndex == i);
-
-    if (ImGui::Selectable(name.c_str(), isSelected)) {
-      currentTrackIndex = i;
-      currentTrackName = name;
-      audioEngine->PlayFile(playlist[i]);
+  if (isSearching) {
+    for (const auto &path : searchResults) {
+      std::string name = GetFileName(path);
+      if (ImGui::Selectable(name.c_str())) {
+        // Find node in DLL to set current (O(N) search, but acceptable for UI
+        // click)
+        Node *temp = playlist.GetHead();
+        while (temp) {
+          if (temp->filepath == path) {
+            playlist.SetCurrent(temp);
+            currentTrackName = temp->filename;
+            audioEngine->PlayFile(temp->filepath);
+            break;
+          }
+          temp = temp->next;
+        }
+      }
     }
-
-    if (isSelected) {
-      ImGui::SetItemDefaultFocus();
+  } else {
+    Node *temp = playlist.GetHead();
+    while (temp) {
+      bool isSelected = (playlist.GetCurrent() == temp);
+      if (ImGui::Selectable(temp->filename.c_str(), isSelected)) {
+        playlist.SetCurrent(temp);
+        currentTrackName = temp->filename;
+        audioEngine->PlayFile(temp->filepath);
+      }
+      if (isSelected) {
+        ImGui::SetItemDefaultFocus();
+      }
+      temp = temp->next;
     }
   }
 

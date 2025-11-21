@@ -881,6 +881,8 @@ CMakeFiles/MusicPlayer.dir/src/GUI.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/u8path.h \
+  /Users/rameshdas/Desktop/Music\ Player\ Project/src/PlaylistDLL.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iostream \
+  /Users/rameshdas/Desktop/Music\ Player\ Project/src/SongTrie.h \
   /Users/rameshdas/Desktop/Music\ Player\ Project/src/AudioEngine.h \
-  /Users/rameshdas/Desktop/Music\ Player\ Project/vendor/miniaudio/miniaudio.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iostream
+  /Users/rameshdas/Desktop/Music\ Player\ Project/vendor/miniaudio/miniaudio.h

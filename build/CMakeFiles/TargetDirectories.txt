@@ -1,3 +1,9 @@
 /Users/rameshdas/Desktop/Music Player Project/build/CMakeFiles/MusicPlayer.dir
+/Users/rameshdas/Desktop/Music Player Project/build/CMakeFiles/package.dir
+/Users/rameshdas/Desktop/Music Player Project/build/CMakeFiles/package_source.dir
 /Users/rameshdas/Desktop/Music Player Project/build/CMakeFiles/edit_cache.dir
 /Users/rameshdas/Desktop/Music Player Project/build/CMakeFiles/rebuild_cache.dir
+/Users/rameshdas/Desktop/Music Player Project/build/CMakeFiles/list_install_components.dir
+/Users/rameshdas/Desktop/Music Player Project/build/CMakeFiles/install.dir
+/Users/rameshdas/Desktop/Music Player Project/build/CMakeFiles/install/local.dir
+/Users/rameshdas/Desktop/Music Player Project/build/CMakeFiles/install/strip.dir

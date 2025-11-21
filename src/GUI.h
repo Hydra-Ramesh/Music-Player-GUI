@@ -8,6 +8,9 @@
 #include <string>
 #include <vector>
 
+#include "PlaylistDLL.h"
+#include "SongTrie.h"
+
 class AudioEngine;
 
 class GUI {
@@ -21,8 +24,16 @@ public:
 
 private:
   AudioEngine *audioEngine;
-  std::vector<std::string> playlist;
-  int currentTrackIndex = -1;
+
+  // Custom Data Structures
+  PlaylistDLL playlist;
+  SongTrie searchTrie;
+
+  // Search State
+  char searchBuffer[128] = "";
+  std::vector<std::string> searchResults;
+  bool isSearching = false;
+
   std::string currentTrackName = "No track playing";
 
   void RenderPlayerControls();

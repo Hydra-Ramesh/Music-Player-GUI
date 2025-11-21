@@ -222,6 +222,24 @@
 		{
 			"isCMake" : true,
 			"isExternal" : true,
+			"path" : "/opt/homebrew/share/cmake/Modules/CPack.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/opt/homebrew/share/cmake/Modules/CPackComponent.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/opt/homebrew/share/cmake/Templates/CPackConfig.cmake.in"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/opt/homebrew/share/cmake/Templates/CPackConfig.cmake.in"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
 			"path" : "/opt/homebrew/share/cmake/Modules/MacOSXBundleInfo.plist.in"
 		}
 	],

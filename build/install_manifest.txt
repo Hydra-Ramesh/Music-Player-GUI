@@ -1,0 +1,2 @@
+/Users/rameshdas/Desktop/Music Player Project/build/_CPack_Packages/Darwin/DragNDrop/MusicPlayer-1.0.0-Darwin/./MusicPlayer.app/Contents/MacOS/MusicPlayer
+/Users/rameshdas/Desktop/Music Player Project/build/_CPack_Packages/Darwin/DragNDrop/MusicPlayer-1.0.0-Darwin/./MusicPlayer.app/Contents/Info.plist

@@ -11,6 +11,7 @@
 		"commands" : 
 		[
 			"add_executable",
+			"install",
 			"target_link_libraries",
 			"include_directories"
 		],
@@ -26,29 +27,35 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 29,
+				"line" : 30,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 30,
+				"line" : 48,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
+				"file" : 0,
+				"line" : 31,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
 				"file" : 0,
 				"line" : 8,
 				"parent" : 0
 			},
 			{
-				"command" : 2,
+				"command" : 3,
 				"file" : 0,
 				"line" : 21,
 				"parent" : 0
 			},
 			{
-				"command" : 2,
+				"command" : 3,
 				"file" : 0,
 				"line" : 24,
 				"parent" : 0
@@ -61,29 +68,29 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++17 -arch arm64"
+					"fragment" : "-std=gnu++17 -arch arm64"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"path" : "/opt/homebrew/Cellar/sdl2/2.32.10/include"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 5,
 					"path" : "/Users/rameshdas/Desktop/Music Player Project/vendor/imgui"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 5,
 					"path" : "/Users/rameshdas/Desktop/Music Player Project/vendor/imgui/backends"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 6,
 					"path" : "/Users/rameshdas/Desktop/Music Player Project/vendor/miniaudio"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"isSystem" : true,
 					"path" : "/opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2"
 				}
@@ -101,32 +108,42 @@
 			[
 				0,
 				2,
-				4,
-				5,
 				6,
 				7,
 				8,
 				9,
 				10,
-				11
+				11,
+				12,
+				13
 			]
 		}
 	],
 	"id" : "MusicPlayer::@6890427a1f51a3e7e1df",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 2,
+				"path" : "."
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "/usr/local"
+		}
+	},
 	"link" : 
 	{
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-g",
-				"role" : "flags"
-			},
-			{
 				"fragment" : "-Wl,-search_paths_first -Wl,-headerpad_max_install_names",
 				"role" : "flags"
 			},
 			{
-				"backtrace" : 2,
+				"backtrace" : 3,
 				"fragment" : "-L/opt/homebrew/Cellar/sdl2/2.32.10/lib",
 				"role" : "libraryPath"
 			},
@@ -135,7 +152,7 @@
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 2,
+				"backtrace" : 3,
 				"fragment" : "/opt/homebrew/Cellar/sdl2/2.32.10/lib/libSDL2.dylib",
 				"role" : "libraries"
 			}
@@ -157,14 +174,14 @@
 			[
 				0,
 				2,
-				4,
-				5,
 				6,
 				7,
 				8,
 				9,
 				10,
-				11
+				11,
+				12,
+				13
 			]
 		},
 		{
@@ -172,7 +189,9 @@
 			"sourceIndexes" : 
 			[
 				1,
-				3
+				3,
+				4,
+				5
 			]
 		}
 	],
@@ -198,6 +217,16 @@
 		{
 			"backtrace" : 1,
 			"path" : "src/GUI.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/PlaylistDLL.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/SongTrie.h",
 			"sourceGroupIndex" : 1
 		},
 		{
