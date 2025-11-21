@@ -36,8 +36,13 @@ if(APPLE)
         MACOSX_BUNDLE_SHORT_VERSION_STRING "1.0"
         MACOSX_BUNDLE_BUNDLE_VERSION "1.0"
     )
+    # Add icon to the executable sources and mark it as a resource
+    target_sources(MusicPlayer PRIVATE "AppIcon.icns")
+    set_source_files_properties("AppIcon.icns" PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
 elseif(WIN32)
-    add_executable(MusicPlayer WIN32 ${SOURCES} ${IMGUI_SOURCES})
+    # Create a resource file for the icon
+    file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/MusicPlayer.rc "IDI_ICON1 ICON \"${CMAKE_SOURCE_DIR}/AppIcon.ico\"")
+    add_executable(MusicPlayer WIN32 ${SOURCES} ${IMGUI_SOURCES} ${CMAKE_CURRENT_BINARY_DIR}/MusicPlayer.rc)
     target_link_libraries(MusicPlayer ${SDL2_LIBRARIES} -lmingw32 -lSDL2main -lSDL2)
 else()
     add_executable(MusicPlayer ${SOURCES} ${IMGUI_SOURCES})

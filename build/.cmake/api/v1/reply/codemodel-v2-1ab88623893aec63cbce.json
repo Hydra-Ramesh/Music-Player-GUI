@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-326b10062eddeae424d0.json",
+					"jsonFile" : "directory-.-9287f66194ee6d5eaa89.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.10"
@@ -40,7 +40,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "MusicPlayer::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-MusicPlayer-ac8c2cc053e2701ec6fc.json",
+					"jsonFile" : "target-MusicPlayer-230058136de07425c4d5.json",
 					"name" : "MusicPlayer",
 					"projectIndex" : 0
 				}

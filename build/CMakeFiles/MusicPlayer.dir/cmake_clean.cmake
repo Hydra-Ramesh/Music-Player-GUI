@@ -20,6 +20,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/MusicPlayer.dir/vendor/imgui/imgui_widgets.cpp.o"
   "CMakeFiles/MusicPlayer.dir/vendor/imgui/imgui_widgets.cpp.o.d"
   "MusicPlayer.app/Contents/MacOS/MusicPlayer"
+  "MusicPlayer.app/Contents/Resources/AppIcon.icns"
   "MusicPlayer.pdb"
 )
 
